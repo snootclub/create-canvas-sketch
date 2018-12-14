@@ -106,7 +106,7 @@ document.body.append(settings.canvas)
 }
 
 let npm = function npm(...args) {
-	console.log(`running "npm ${args.join(" ")}"`.grey.bold)
+	console.log(`running "npm ${args.join(" ")}"`.blue.bold)
 	return execa("npm", [...args])
 }
 
@@ -132,14 +132,12 @@ void async function () {
 		name
 	)
 
-	console.log(`making directory ${workingDirectory}`.grey)
+	console.log(`making directory ${workingDirectory}`.blue)
 	await fs.mkdirp(workingDirectory)
-	console.log(`entering ${workingDirectory}`.grey)
+	console.log(`entering ${workingDirectory}`.blue)
 	process.chdir(workingDirectory)
 	await npm("init", "-y")
 	await npm.install("canvas-sketch", "canvas-sketch-util")
-
-	// await npm.devInstall("parcel-bundler")
 
 	let manifestFile = path.resolve(workingDirectory, "package.json")
 	let manifest = await fs.readJson(manifestFile)
@@ -152,12 +150,12 @@ void async function () {
 
 	manifest.main = "index.html"
 
-	console.log(`writing scripts and main to ${manifestFile}`.gray)
+	console.log(`writing scripts and main to ${manifestFile}`.blue)
 	await fs.outputJson(manifestFile, manifest)
 
 	for (let filename in fileCreators) {
 		let filepath = path.resolve(workingDirectory, filename)
-		console.log(`writing to ${filepath}`.gray)
+		console.log(`writing to ${filepath}`.blue)
 		await fs.outputFile(
 			filepath,
 			fileCreators[filename]({name})
@@ -168,8 +166,9 @@ void async function () {
 and we're done! you can find your boi in ${workingDirectory}
 if you hop in there and run
 $ ${"npm start".green}
-(you'll want to have ${"parcel".yellow} installed globally)
-you can get started by editing the ${"index.js".green} file.
+(if you don't have ${"parcel".yellow} installed globally,
+you should install it in the project as a devDependency)
+you can get started by editing the ${"sketch.js".green} file.
 
 ${"<3".red.bold}
 `)

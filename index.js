@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 let Readline = require("readline")
 let execa = require("execa")
 let path = require("path")
@@ -26,7 +27,7 @@ let dependencies = [
 let fileCreators = {
 	"get-canvas.js"() {
 		return `// NOTE: You shouldn't need to edit this file it's only to deal
-// with anomalies of canvas-sketch and parcel together when 
+// with anomalies of canvas-sketch and parcel together when
 // they are working together as a team
 
 let createCanvas = () => {
@@ -51,7 +52,7 @@ let settings = {
 		2048,
 		2048
 	],
-	canvas 
+	canvas
 }
 
 let sketch = () => ({context, width, height}) => {
@@ -92,7 +93,7 @@ document.body.append(settings.canvas)
 		justify-content: center;
 		height: 100vh;
 	}
-	
+
 	canvas {
 		border: 1px solid pink;
 		box-shadow: 0 0 4px rgba(250, 240, 15, 0.5);
@@ -137,7 +138,7 @@ void async function () {
 	process.chdir(workingDirectory)
 	await npm("init", "-y")
 	await npm.install("canvas-sketch", "canvas-sketch-util")
-	
+
 	// await npm.devInstall("parcel-bundler")
 
 	let manifestFile = path.resolve(workingDirectory, "package.json")

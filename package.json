@@ -1,0 +1,40 @@
+{
+  "name": "@snootclub/create-canvas-sketch",
+  "version": "0.2.2",
+  "description": "create an empty canvas-sketch page RDY for your canvas sketch boi",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"lol\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/snootclub/create-canvas-sketch.git"
+  },
+  "keywords": [
+    "create",
+    "canvas",
+    "sketch",
+    "snoot",
+    "snoot",
+    "honk",
+    "honk",
+    "noot",
+    "noot"
+  ],
+  "author": "chee <chee@snoot.club>",
+  "license": "GPL-3.0+",
+  "bugs": {
+    "url": "https://github.com/snootclub/create-canvas-sketch/issues"
+  },
+  "homepage": "https://github.com/snootclub/create-canvas-sketch#readme",
+  "dependencies": {
+    "colors": "^1.3.3",
+    "execa": "^1.0.0",
+    "fs-extra": "^7.0.1",
+    "inquirer": "^6.2.1"
+  },
+  "devDependencies": {
+    "@types/execa": "^0.9.0",
+    "@types/fs-extra": "^5.0.4"
+  }
+}

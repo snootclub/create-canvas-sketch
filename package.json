@@ -1,6 +1,6 @@
 {
   "name": "@snootclub/create-canvas-sketch",
-  "version": "0.2.2",
+  "version": "0.2.22",
   "description": "create an empty canvas-sketch page RDY for your canvas sketch boi",
   "main": "index.js",
   "scripts": {

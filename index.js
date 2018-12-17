@@ -151,7 +151,7 @@ void async function () {
 	manifest.main = "index.html"
 
 	console.log(`writing scripts and main to ${manifestFile}`.blue)
-	await fs.outputJson(manifestFile, manifest)
+	await fs.outputJson(manifestFile, manifest, {spaces: "\t"})
 
 	for (let filename in fileCreators) {
 		let filepath = path.resolve(workingDirectory, filename)

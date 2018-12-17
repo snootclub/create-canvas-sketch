@@ -163,13 +163,16 @@ void async function () {
 	}
 
 	console.log(`
-and we're done! you can find your boi in ${workingDirectory}
-if you hop in there and run
-$ ${"npm start".green}
-(if you don't have ${"parcel".yellow} installed globally,
-you should install it in the project as a devDependency)
-you can get started by editing the ${"sketch.js".green} file.
 
-${"<3".red.bold}
-`)
+Created canvas sketch in: ${workingDirectory}
+
+We expect ${"parcel".yellow} to be installed globally.
+If this is not the case, you can install it in the project with:
+$ npm install -D parcel-bundler
+
+$ ${"npm start -- --open".green}
+
+your code should go in ${"sketch.js".green}
+
+${"<3".red.bold}`)
 }()

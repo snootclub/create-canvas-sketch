@@ -19,45 +19,40 @@ let ask = question => {
 	)
 }
 
-let dependencies = [
-	"canvas-sketch",
-	"canvas-sketch-util"
-]
-
 let fileCreators = {
-	"get-canvas.js"() {
-		return `// NOTE: You shouldn't need to edit this file it's only to deal
-// with anomalies of canvas-sketch and parcel together when
-// they are working together as a team
+	"index.js"() {
+return `
+import canvasSketch from "canvas-sketch"
+import sketch, {settings} from "./sketch.js"
 
-let createCanvas = () => {
-	let canvas = document.createElement("canvas")
-	canvas.id = "canvas"
-	return canvas
+let manager = canvasSketch(sketch, {
+  ...settings,
+  canvas: document.getElementById("canvas")
+})
+
+if (module.hot) {
+	module.hot.dispose(() => {
+		manager.then(manager => console.log(manager.destroy()))
+	})
 }
-
-export default () =>
-	document.getElementById("canvas") || createCanvas()
 `
-	},
+},
 
 	"sketch.js"() {
-		return `import canvasSketch from "canvas-sketch"
-import getCanvas from "./get-canvas.js"
-
-let canvas = getCanvas()
-
-let settings = {
+		return `export let settings = {
 	dimensions: [
 		2048,
 		2048
 	],
-	canvas
+	animate: true,
+	duration: 4
 }
 
-let sketch = () => ({context, width, height}) => {
+export default () => ({context, width, height, playhead}) => {
 	let margin = 400
 	context.fillStyle = "hsl(5, 37%, 94%)"
+	context.strokeStyle = context.fillStyle
+	context.strokeWidth = 4
 	context.fillRect(0, 0, width, height)
 
 	let gradient = context.createLinearGradient(
@@ -66,7 +61,7 @@ let sketch = () => ({context, width, height}) => {
 		95,
 		height / 1.75
 	)
-	gradient.addColorStop(0, "hsl(220, 100%, 90%)")
+	gradient.addColorStop(0, \`hsl(220, 100%, \${100 * playhead}%)\`)
 	gradient.addColorStop(1, "hsl(340, 100%, 50%)")
 	context.fillStyle = gradient
 	context.fillRect(
@@ -75,11 +70,11 @@ let sketch = () => ({context, width, height}) => {
 		width - margin * 2,
 		height - margin * 2,
 	)
+
+	context.moveTo(playhead * width, 0)
+	context.lineTo(0, playhead * Math.sin(playhead * width) * height)
+	context.stroke()
 }
-
-canvasSketch(sketch, settings)
-
-document.body.append(settings.canvas)
 `
 	},
 

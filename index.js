@@ -168,11 +168,11 @@ Created canvas sketch in: ${workingDirectory}
 
 We expect ${"parcel".yellow} to be installed globally.
 If this is not the case, you can install it in the project with:
-$ npm install -D parcel-bundler
+$ ${"npm install -D parcel-bundler".yellow}
 
 $ ${"npm start -- --open".green}
 
-your code should go in ${"sketch.js".green}
+your code goes in ${"sketch.js".green}
 
 ${"<3".red.bold}`)
 }()

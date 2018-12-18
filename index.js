@@ -100,7 +100,8 @@ document.body.append(settings.canvas)
 	}
 </style>
 <body>
-<script src="./sketch.js"></script>
+<canvas id="canvas"></canvas>
+<script src="./index.js"></script>
 `
 	}
 }

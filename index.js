@@ -143,8 +143,8 @@ void async function () {
 	let manifest = await fs.readJson(manifestFile)
 
 	manifest.scripts = {
-		build: "parcel build index.html -d website",
-		watch: "parcel watch index.html -d website",
+		build: "parcel build index.html -d ${SNOOT_OUTPUT_DIRECTORY:-website} --public-url ${SNOOT_PUBLIC_URL:-/}",
+		watch: "parcel watch index.html -d ${SNOOT_OUTPUT_DIRECTORY:-website} --public-url ${SNOOT_PUBLIC_URL:-/}",
 		start: "parcel index.html"
 	}
 
